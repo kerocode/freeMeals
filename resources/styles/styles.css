@@ -1,0 +1,423 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+md-checkbox .alignbox {
+    float: left;
+}
+
+.banner {
+    padding: 5px 10px 5px 0;
+    background-color: dimgray;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.banner>p {
+    color: white;
+    font-weight: bold;
+}
+
+.step {
+    text-shadow: 0px 1px 1px #4d4d4d;
+    color: #222;
+    font-size: 1.2em;
+    background-color: darkgray;
+    padding: 21px 5px 21px 20px;
+}
+
+.tips {
+    padding: 15px 0px 15px 0px;
+    margin-top: 5px;
+    background-color: #F6D8CE;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+    z-index: 10000;
+}
+
+.mdcontent {
+    height: 600px;
+}
+
+.parag {
+    width: 1000px;
+}
+
+.pad-top {
+    padding-top: 15px;
+}
+
+.pad-left {
+    padding-left: 5px;
+}
+
+.dialog {
+    padding: 10px;
+    background-color: #e0e0e0;
+}
+
+.warn {
+    background: red;
+    padding: 4px 6px;
+    text-shadow: 0px 1px 1px #222;
+    color: #fff;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.marg {
+    margin-left: 25px;
+}
+
+.hint {
+    /* Position the hint */
+    position: absolute;
+    left: 2px;
+    right: auto;
+    bottom: 7px;
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: grey;
+}
+
+.container {
+    border-radius: 10px;
+    border-style: ridge;
+    border-width: 4px;
+    border-color: blue;
+    margin-top: 5px;
+}
+
+.surfaceup {
+    z-index: 10000;
+}
+
+#content >p {
+    padding-left: 10px;
+}
+
+.childIncome {
+    margin-top: 50px;
+}
+
+.wrap {
+    margin-top: 5px;
+}
+
+#warntip {
+    text-shadow: 0px 1px 1px #B8B8B8;
+    font-weight: bold;
+}
+
+.labelctrl {
+    float: left;
+    display: inline-block;
+}
+
+#usefultip {
+    text-shadow: 0px 1px 1px #222;
+    color: #fff;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 1.5em;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background: #FF79E1;
+}
+
+ul {
+    margin-top: -10px;
+}
+
+h4 {
+    opacity: 1;
+    text-decoration-color: black;
+    padding-left: 10px;
+}
+
+.box {
+    margin-top: 5px;
+}
+
+.cell {
+    padding-left: 25px;
+    padding-right: 3px;
+}
+
+#banner p {
+    margin-left: -40px;
+    float: left;
+    text-align: left;
+}
+
+md-content {
+    background-color: #fff;
+    opacity: 0.8;
+}
+
+.ele {
+    margin-top: 25px;
+}
+
+.end {
+    background-color: lightgray;
+}
+
+.md-toolbar-tools {
+    height: 600px;
+}
+
+.centered {
+    position: fixed;
+    top: 30%;
+    left: 20%;
+    margin-top: -30px;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0% 48%
+    }
+    50% {
+        background-position: 100% 53%
+    }
+    100% {
+        background-position: 0% 48%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0% 48%
+    }
+    50% {
+        background-position: 100% 53%
+    }
+    100% {
+        background-position: 0% 48%
+    }
+}
+
+@-o-keyframes AnimationName {
+    0% {
+        background-position: 0% 48%
+    }
+    50% {
+        background-position: 100% 53%
+    }
+    100% {
+        background-position: 0% 48%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0% 48%
+    }
+    50% {
+        background-position: 100% 53%
+    }
+    100% {
+        background-position: 0% 48%
+    }
+}
+
+*/ .remove {
+    margin-left: auto;
+}
+
+.animate-show {
+    opacity: 1;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    transition: all linear 0.8s;
+}
+
+.animate-show.ng-hide {
+    opacity: 0;
+}
+
+#form-views.ng-enter,
+#form-views.ng-leave {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    transition: 0.8s all ease;
+    -moz-transition: 0.8s all ease;
+    -webkit-transition: 0.8s all ease;
+}
+
+
+/* enter animation */
+
+#form-views.ng-enter {
+    -webkit-animation: slideInRight 0.8s both ease;
+    -moz-animation: slideInRight 0.8s both ease;
+    animation: slideInRight 0.8s both ease;
+}
+
+
+/* leave animation */
+
+#form-views.ng-leave {
+    -webkit-animation: slideOutLeft 0.8s both ease;
+    -moz-animation: slideOutLeft 0.8s both ease;
+    animation: slideOutLeft 0.8s both ease;
+}
+
+.underline-reveal {
+    font-size: 1.1em;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+}
+
+.underline-reveal:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #2098d1;
+    height: 4px;
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.color {
+    color: rgb(63, 81, 181);
+}
+
+.underline-reveal:hover {
+    background-color: aliceblue;
+}
+
+.underline-reveal:hover:before,
+.underline-reveal:focus:before,
+.underline-reveal:active:before {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+
+/* ANIMATIONS
+============================================================================= */
+
+
+/* slide out to the left 
+@keyframes slideOutLeft {
+	to 		{ transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {	
+	to 		{ -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+	to 		{ -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+
+
+/*
+@keyframes slideInRight {
+	from 	{ transform:translateX(200%); }
+	to 		{ transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+	from 	{ -moz-transform:translateX(200%); }
+	to 		{ -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+	from 	{ -webkit-transform:translateX(200%); }
+	to 		{ -webkit-transform: translateX(0); }
+}*/
+
+
+/*
+===========================================================================================*/
+
+
+/* step-transition
+==========================================================================================================================*/
+
+.page.ng-leave {
+    -webkit-animation: slideOutLeft 0.5s both ease-in;
+    -moz-animation: slideOutLeft 0.5s both ease-in;
+    animation: slideOutLeft 0.5s both ease-in;
+}
+
+.page.ng-enter {
+    -webkit-animation: slideInRight 0.5s both ease-in;
+    -moz-animation: slideInRight 0.5s both ease-in;
+    animation: slideInRight 0.5s both ease-in;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@-moz-keyframes slideInRight {
+    from {
+        -moz-transform: translateX(100%);
+    }
+    to {
+        -moz-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideInRight {
+    from {
+        -webkit-transform: translateX(100%);
+    }
+    to {
+        -webkit-transform: translateX(0);
+    }
+}
+
+
+/* slide in from the bottom */
+
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@-moz-keyframes slideOutLeft {
+    to {
+        -moz-transform: translateX(-100%);
+    }
+}
+
+@-webkit-keyframes slideOutLeft {
+    to {
+        -webkit-transform: translateX(-100%);
+    }
+}

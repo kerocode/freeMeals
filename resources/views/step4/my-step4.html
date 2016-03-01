@@ -1,0 +1,161 @@
+<div ng-controller="Step4Ctrl" layout="column" style="width:1000px;" layout-align="center" ng-cloak>
+    <md-toolbar class="md-primary">
+        <div layout-gt-sm="row">
+            <p style="padding:0px 5px 0px 5px;"><span style=" color:#fff; font-weight:bold; padding:0px 5px 0px 5px;"> OPTIONAL </span> Children's Racial and Ethnic Identities </p>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form name="form5">
+            <div layout-gt-sm="row">
+                <p>We are required to ask for information about your children’s race and ethnicity. This information is important and helps to make sure we are fully serving our community.
+                    <br>Responding to this section is optional and does not affect your children’s eligibility for free or reduced price meals. </p>
+
+            </div>
+            <div layout="row" layout-align="center">
+                <div class="cell ">
+                    <label> <b>Ethnicity:</b></label>
+                    <div class="box">
+                        <md-radio-group ng-model="optional.IsHispanic">
+                            <md-radio-button value="Yes">Hispanic or Latino</md-radio-button>
+                            <md-radio-button value="No"> Not Hispanic or Latino </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                </div>
+                <div style="margin-left:25px;">
+                    <label> <b>Race (check one or more):</b></label>
+                    <div flex="100" data-ng-repeat="race in races">
+                        <md-checkbox ng-click="toggle(race, selected)">
+                            {{ race }}
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </md-content>
+    <md-toolbar class="md-primary">
+        <div layout-gt-sm="row">
+            <p style="padding:0px 5px 0px 5px;"><span style=" color:#fff; font-weight:bold; padding:0px 5px 0px 5px;">  Step4 </span> Contact information and adult signature </p>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+
+        <form name="userForm">
+
+            <md-input-container class="md-block">
+                <label>Address</label>
+                <input required ng-model="user.address">
+                <div ng-messages="userForm.city.$error">
+                    <div ng-message="required">please provide your address</div>
+
+                </div>
+            </md-input-container>
+
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>City</label>
+                    <input required ng-model="user.city">
+                    <div ng-messages="userForm.city.$error">
+                        <div ng-message="required">required.</div>
+
+                    </div>
+                </md-input-container>
+                <div flex="2" hide-xs hide-sm>
+                    <!-- Spacer //-->
+                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>State</label>
+                    <md-select required ng-model="user.state" class="zindex">
+                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                            {{state.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <div flex="2" hide-xs hide-sm>
+                    <!-- Spacer //-->
+                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Postal Code</label>
+                    <input name="postalCode" ng-model="user.postalCode" type="number" placeholder="12345" required>
+                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                        <div ng-message="required" class="my-message">You must supply a postal code.</div>
+
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row" layout-fill>
+                <md-input-container class="md-block">
+                    <label>Phone Number</label>
+                    <md-icon md-svg-src="resources/images/ic_phone_black_36px.svg"></md-icon>
+                    <input name="phone" type='text' phone-input ng-model="user.phone" />
+                    <div class="hint">(###) ###-####</div>
+                </md-input-container>
+                <div flex="4" hide-xs hide-sm>
+                    <!-- Spacer //-->
+                </div>
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <md-icon md-svg-src="resources/images/ic_email_black_36px.svg"></md-icon>
+                    <input name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/" />
+                    <div ng-messages="userForm.email.$error">
+                        <div ng-message="pattern">
+                            Please provide valid an e-mail address.
+                        </div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div layout="column">
+                <md-toolbar class="md-warn">
+                    <div class="md-toolbar-tools">
+                        <h2 class="md-flex">Terms and Conditions</h2>
+                    </div>
+                </md-toolbar>
+                <md-content flex layout-padding class="mdcontent">
+
+                    <p>
+                        The Richard B. Russell National School Lunch Act requires the information on this application. You do not have to give the information, but if you do not, we cannot approve your child for free or reduced price meals. You must include the last four digits of the social security number of the adult household member who signs the application. The last four digits of the social security number is not required when you apply on behalf of a foster child or you list a Supplemental Nutrition Assistance Program (SNAP), Temporary Assistance for Needy Families (TANF) Program or Food Distribution Program on Indian Reservations (FDPIR) case number or other FDPIR identier for your child or when you indicate that the adult household member signing the application does not have a social security number. We will use your information to determine if your child is eligible for free or reduced price meals, and for administration and enforcement of the lunch and breakfast programs. We MAY share your eligibility information with education, health, and nutrition programs to help them evaluate, fund, or determine benets for their programs, auditors for program reviews, and law enforcement ofcials to help them look into violations of program rules.
+                    </p>
+                    <p>
+                        The U.S Department of Agriculture prohibits discrimination against its customers, employees, and applicants for employment on the bases of race, color, national origin, age, disability, sex, gender identity, religion, reprisal, and where applicable, political beliefs, marital status, familial or parental status, sexual orientation, or all or part of We are required to ask for information about your children’s race and ethnicity. This information is important and helps to make sure we are fully serving our community. Responding to this section is optional and does not affect your children’s eligibility for free or reduced price meals. Race (check one or more): American Indian or Alaskan Native Asian Black or African American Native Hawaiian or Other Pacic Islander White Ethnicity (check one): Hispanic or Latino Not Hispanic or Latino an individual’s income is derived from any public assistance program, or protected genetic information in employment or in any program or activity conducted or funded by the Department. (Not all prohibited bases will apply to all programs and/or employment activities.)
+                    </p>
+                    <p>
+                        If you wish to le a Civil Rights program complaint of discrimination, complete the USDA Program Discrimination Complaint Form, found online at <a href="http://www.ascr.usda.gov/complaint_ling_cust.html">http://www.ascr.usda.gov/complaint_ling_cust.html </a>, or at any USDA ofce, or call (866) 632-9992 to request the form. You may also write a letter containing all of the information requested in the form. Send your completed complaint form or letter to us by mail at U.S. Department of Agriculture, Director, Ofce of Adjudication , 1400 Independence Avenue, S.W., Washington, D.C. 20250-9410 , by fax (202) 690-7442 or email at program.intake@usda.gov.
+                    </p>
+                    <p>
+                        Individuals who are deaf, hard of hearing or have speech disabilities may contact USDA through the Federal Relay Service at (800) 877-8339; or (800) 845-6136 (Spanish).
+                    </p>
+                    <p>
+                        USDA is an equal opportunity provider and employer.
+                    </p>
+
+                </md-content>
+            </div>
+            <div layout-gt-sm="row">
+                <md-content layout-padding class="end">
+
+                    <md-checkbox ng-model="user.IsSigned" required>
+                        <p style="font-size:0.8em;"> “I certify (promise) that all information on this application is true and that all income is reported. I understand that this information is given in connection with the receipt of Federal funds, and that school ofcials may verify (check) the information. I am aware that if I purposely give false information, my children may lose meal benets, and I may be prosecuted under applicable State and Federal laws.”</p>
+                    </md-checkbox>
+
+                    <p>Printed name of adult completing the form</p>
+                    <div layout-align="end">
+                        Today's Date: {{todayData | date:'MM/dd/yyyy'}}
+                    </div>
+                    <md-input-container>
+                        <input ng-model="user.formName" placeholder="print your name here" required>
+                        <div ng-messages="userForm.formName.$error">
+                            <div ng-message="required">Required</div>
+                        </div>
+                    </md-input-container>
+
+                    <div flex="10" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-button class=" md-raised md-primary" ng-disabled="userForm.$invalid" ng-click="checkNextStep()">Submit</md-button>
+                </md-content>
+            </div>
+        </form>
+    </md-content>
+
+
+</div>

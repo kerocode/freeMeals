@@ -1,0 +1,87 @@
+<div aria-label="step1" ng-controller="Step1Ctrl" layout="column" ng-cloak layout-align="center">
+    <md-toolbar class="md-primary">
+        <div layout-gt-sm="row" class="md-primary">
+            <p> <span style=" color:#fff; font-weight:bold; padding:0px 5px 0px 5px;">STEP 1: </span> List all household members who are infants, children, and students up to and including grade 12</p>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding>
+        <div class="wrap">
+            <form name="Form" ng-submit="checkNextStep(Form.$valid)" novalidate>
+
+                <div layout="row" layout-align="center" class="page md-inline-form" data-ng-repeat="child in children">
+                    <div flex="94">
+                        <div layout-gt-sm="row" layout-align="center">
+                            <md-input-container class="md-block ele ">
+                                <label>First Name</label>
+                                <input required name="firstName" ng-model="child.firstName">
+                                <div ng-messages="Form.firstName.$error" role="alert">
+                                    <div ng-message="required">First Name is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block ele" style="max-width:60px;">
+                                <label>MI</label>
+                                <input required name=" middleName " ng-model="child.middleName ">
+                                <div ng-messages="Form.middleName.$error " role="alert">
+                                    <div ng-message="required">Middle Name is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block ele">
+                                <label>Last Name</label>
+                                <input required name="lastName " ng-model="child.lastName ">
+                                <div ng-messages="Form.lastName.$error " role="alert">
+                                    <div ng-message="required ">Last Name is required.</div>
+                                </div>
+                            </md-input-container>
+
+                            <div class="cell ">
+                                <label> <b>Student?</b></label>
+                                <div style="margin-top:15px;">
+                                    <md-radio-group required ng-model="child.IsStudent">
+                                        <md-radio-button value="Yes">Yes</md-radio-button>
+                                        <md-radio-button value="No"> No </md-radio-button>
+                                    </md-radio-group>
+                                </div>
+                            </div>
+                            <div>
+                                <label><b> Child's situation?(check all that apply) </b></label>
+                                <div>
+                                    <md-checkbox ng-required="child.IsHomeless === undefined || child.IsHomeless === false " ng-model="child.IsFoster">
+                                        Foster Child
+                                    </md-checkbox>
+                                    <md-checkbox ng-required="child.IsFoster === undefined || child.IsFoster === false " ng-model="child.IsHomeless">
+                                        Homeless, Migrant, Runaway
+                                    </md-checkbox>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="2">
+                        <!-- spacer -->
+                    </div>
+                    <div flex="4">
+                        <md-button class="md-raised md-primary md-fab animate-show" ng-if="childern.length !== 1" ng-click="removeChild(children,$index)">
+                            <md-tooltip md-direction="top">
+                                Delete
+                            </md-tooltip>
+                            <md-icon md-svg-src="resources/images/ic_delete_white_48px.svg"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+                <div layout-gt-sm="row" layout-align="center">
+                    <md-button class="md-raised md-accent" ng-click="addChild()">Add Child </md-button>
+                    <md-button type="submit" class="md-raised md-primary">
+                        Next Step
+                    </md-button>
+                </div>
+            </form>
+        </div>
+    </md-content>
+
+
+    <div class="tips">
+        <span id="usefultip"> useful tips!!  </span>
+        <div step1-tips></div>
+    </div>
+
+</div>

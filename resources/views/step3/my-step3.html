@@ -1,0 +1,191 @@
+<div ng-controller="Step3Ctrl" layout="column" layout-align="center" ng-cloak>
+    <md-toolbar class="md-primary">
+        <div layout-gt-sm="row">
+            <p><span style=" color:#fff; font-weight:bold; padding:0px 5px 0px 5px;">  Step 3 </span> REPORT INCOME FOR ALL HOUSEHOLD MEMBERS </p>
+        </div>
+    </md-toolbar>
+    <div class="wrap">
+        <md-content layout-padding>
+            <form name="Form" ng-submit="checkNextStep(Form.$valid)" novalidate>
+                <div layout-gt-sm="row">
+                    <p style="padding-left:5px; font:italic 20px Serif;"><b>A. Child Income:</b>Sometimes children in the household earn income. Please include the <b>TOTAL</b> income earned by all Household Members listed in <b>STEP 1</b> here</p>
+                </div>
+                <!--new row -->
+                <div layout-gt-sm="row" class="md-inline-form " layout-align="center">
+                    <md-input-container class="md-block ">
+                        <label>Child Income(USD)</label>
+                        <md-icon md-svg-src="resources/images/currency-usd.svg"></md-icon>
+                        <input required type="number" name="IncomeAmount" ng-model="child.IncomeAmount">
+                        <div ng-messages="Form.IncomeAmount.$error">
+                            <div ng-message="required">Child Income is required.</div>
+                        </div>
+                    </md-input-container>
+                    <div class="cell" ng-disabled='child.IncomeAmount === 0'>
+                        <label><b> How Often? </b></label>
+                        <div class="box">
+                            <md-radio-group ng-model="child.payPeriod" ng-required="child.IncomeAmount !== 0" ng-disabled='child.IncomeAmount === 0'>
+                                <md-radio-button value="Weekly" ng-disabled='child.IncomeAmount === 0'>Weekly </md-radio-button>
+                                <md-radio-button value="Bi-Weekly" ng-disabled='child.IncomeAmount === 0'> Bi-Weekly </md-radio-button>
+                                <md-radio-button value="2x Month" ng-disabled='child.IncomeAmount === 0'>2x Month </md-radio-button>
+                                <md-radio-button value="Monthly" ng-disabled='child.IncomeAmount === 0'> Monthly </md-radio-button>
+                            </md-radio-group>
+                            <a class="md-raised" ng-click="childIncomeh($event)"> <img src="resources/images/ic_help_black_18px.svg" alt="help"> </a>
+
+                        </div>
+                    </div>
+                </div>
+                <!--new row -->
+                <div layout-gt-xs="row" style="padding-left:5px; font:italic 20px Serif;">
+                    <p style="width:1300px;"> <b>B. All Adult Household Members (including yourself):</b>B. All Adult Household Members (including yourself) List all Household Members not listed in STEP 1 (including yourself)<b> even if they do not receive income. </b> even if they do not receive income. For each Household Member listed, if they do receive income, report total income for each source in whole dollars only. If they do not receive income from any source, write ‘0’. If you enter ‘0’ you are certifying (promising) that there is no income to report.</p>
+                </div>
+                <div layout="row" layout-align="center" class="page container" data-ng-repeat="householder in houseHolders">
+                    <div flex="94">
+                        <div layout-gt-sm="row">
+                            <label style="padding:5px;">B.Name of Adult Household Members (First and Last)</label>
+                        </div>
+                        <div layout-gt-sm="row" class="md-inline-form" layout-fill>
+                            <md-input-container class="md-block">
+                                <label>First Name</label>
+                                <input required name="firstname" ng-model="householder.firstname">
+                                <div ng-messages="Form.firstname.$error" role="alert">
+                                    <div ng-message="required">First Name is required.</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="2" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block ">
+                                <label>Last Name</label>
+                                <input required name="lastname" ng-model="householder.lastname">
+                                <div ng-messages="Form.lastname.$error" role="alert">
+                                    <div ng-message="required">Last Name is required.</div>
+                                </div>
+                            </md-input-container>
+                            <div flex="3" hide-xs hide-sm>
+                                <!-- Spacer //-->
+                            </div>
+                            <md-input-container class="md-block">
+                                <label>Earnings from Work(USD)</label>
+                                <md-icon md-svg-src="resources/images/currency-usd.svg"></md-icon>
+                                <input required type="number" name="earning" ng-model="householder.incomeAmount">
+                                <div ng-messages="Form.earning.$error" role="alert">
+                                    <div ng-message="required">Enter how much you earn from work.</div>
+                                </div>
+                            </md-input-container>
+
+                            <div class="cell" ng-disabled='householder.incomeAmount === 0'>
+                                <label><b> How Often? </b></label>
+                                <div class="box">
+                                    <md-radio-group ng-disabled='householder.incomeAmount === 0' ng-required='householder.incomeAmount !== 0' ng-model="householder.incomePeroid">
+                                        <md-radio-button value="Weekly">Weekly </md-radio-button>
+                                        <md-radio-button value="Bi-Weekly"> Bi-Weekly </md-radio-button>
+                                        <md-radio-button value="2x Month">2x Month </md-radio-button>
+                                        <md-radio-button value="Monthly"> Monthly </md-radio-button>
+                                    </md-radio-group>
+                                    <a class="md-raised" ng-click="adultIncomeh($event)"> <img src="resources/images/ic_help_black_18px.svg" alt="help"> </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div layout-gt-sm="row" class="md-inline-form" layout-fill>
+                            <md-input-container class="md-block ">
+                                <label>Public Assistance/ Child Support/Alimony(USD)</label>
+                                <md-icon md-svg-src="resources/images/currency-usd.svg"></md-icon>
+                                <input required type="number" name="childS" ng-model="householder.childSupport">
+                                <div ng-messages="Form.childS.$error" role="alert">
+                                    <div ng-message="required">Enter how much Public Assistance/
+                                        <br>Child Support/Alimony you get.</div>
+                                </div>
+                            </md-input-container>
+
+                            <div class="cell" ng-disabled="householder.childSupport ===0">
+                                <label><b> How Often? </b></label>
+                                <div class="box">
+                                    <md-radio-group ng-disabled="householder.childSupport ===0" ng-required="householder.childSupport !==0" ng-model="householder.childSupportPeroid">
+                                        <md-radio-button value="Weekly">Weekly </md-radio-button>
+                                        <md-radio-button value="Bi-Weekly"> Bi-Weekly </md-radio-button>
+                                        <md-radio-button value="2x Month">2x Month </md-radio-button>
+                                        <md-radio-button value="Monthly"> Monthly </md-radio-button>
+                                    </md-radio-group>
+                                    <a class="md-raised" ng-click="childSupporth($event)"> <img src="resources/images/ic_help_black_18px.svg" alt="help"> </a>
+                                </div>
+                            </div>
+                            <md-input-container class="md-block marg">
+                                <label>Pensions/Retirement/All Other Income (USD)</label>
+                                <md-icon md-svg-src="resources/images/currency-usd.svg"></md-icon>
+                                <input required type="number" name="otherI" ng-model="householder.retirement">
+                                <div ng-messages=" Form.otherI.$error " role="alert">
+                                    <div ng-message="required ">Enter how much Pensions
+                                        <br>/Retirement/All Other Income you get.</div>
+
+                                </div>
+                            </md-input-container>
+
+                            <div class="cell " ng-disabled="householder.retirement===0">
+                                <label><b> How Often? </b></label>
+                                <div class="box ">
+                                    <md-radio-group ng-disabled="householder.retirement===0" ng-required="householder.retirement!==0" ng-model="householder.retirementPeroid ">
+                                        <md-radio-button value="Weekly ">Weekly </md-radio-button>
+                                        <md-radio-button value="Bi-Weekly "> Bi-Weekly </md-radio-button>
+                                        <md-radio-button value="2x Month ">2x Month </md-radio-button>
+                                        <md-radio-button value="Monthly "> Monthly </md-radio-button>
+                                    </md-radio-group>
+                                    <a class="md-raised" ng-click="otherIncomeh($event)"> <img src="resources/images/ic_help_black_18px.svg" alt="help"> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex="2">
+                        <!-- Spacer //-->
+                    </div>
+                    <div flex="4">
+                        <md-button class=" md-fab md-raised md-primary " ng-if="houseHolders.length !== 1" ng-click="removeHoulder(houseHolders,$index)">
+                            <md-tooltip md-direction="top">
+                                Delete
+                            </md-tooltip>
+                            <md-icon md-svg-src="resources/images/ic_delete_white_48px.svg"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+                <div layout-gt-sm="row " layout-align="center ">
+                    <md-button class="md-raised md-accent " ng-click="addHoulder()">Add House Member </md-button>
+                </div>
+
+
+                <div layout-gt-sm="row" layout-align="center" layout-fill>
+                    <div style="margin-top:20px;" ng-hide="house.IsChecked == true"> Last Four Digits of Social Security Number (SSN) of Primary
+                        <br>Wage Earner or Other Adult Household Member(####) </div>
+                    <md-input-container ng-hide="house.IsChecked ==true" class="md-block ">
+                        <input ng-required="house.IsChecked == false" ng-pattern="/^[0-9]{4}$/" ng-disabled="house.IsChecked ==true" type="number" aria-label="snum" name="snum" ng-model="house.SNN">
+                        <div ng-messages="Form.snum.$error" role="alert">
+                            <div ng-message="['required','pattern']">Please provide Last Four Digits of Social Security Number(####).</div>
+                        </div>
+                    </md-input-container>
+                    <div flex="2">
+                        <!-- Spacer //-->
+                    </div>
+                    <div style="margin-top:35px;">
+                        <label><b>Check if no SSN</b></label>
+                        <md-checkbox ng-required="house.SNN.length == 0 " ng-disabled="house.SNN.length >0 " ng-model="house.IsChecked"> </md-checkbox>
+                    </div>
+                </div>
+                <div layout-gt-sm="row" layout-align="center" layout-fill>
+                    <div style="margin-top:20px;"> Total Household Members (Children and Adults)
+                    </div>
+                    <md-input-container class="md-block">
+                        <input required type="number" exact='{{total}}' aria-label="num" name="num" ng-model="house.No">
+                        <div ng-messages="Form.num.$error" multiple>
+                            <div ng-message="required">Please provide Total Household Members.</div>
+                            <div ng-message="exact"> According to your input in step 1 and step 3(part B), your total Household Members is {{total}} </div>
+                        </div>
+                    </md-input-container>
+                    <!-- test form         <div> {{Form.$valid}}</div> -->
+                </div>
+
+                <div layout-gt-sm="row" layout-align="center">
+                    <md-button class="md-raised md-primary" type="submit"> <b>Next Step </b></md-button>
+                </div>
+            </form>
+        </md-content>
+    </div>
+    <div step3-tips> </div>
+</div>

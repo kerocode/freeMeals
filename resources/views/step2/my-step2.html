@@ -1,0 +1,42 @@
+<div layout-align="center" ng-controller="Step2Ctrl" layout="column" layout-align="center">
+    <md-toolbar class="md-primary">
+        <div layout-gt-sm="row">
+            <p style="padding:0px 5px 0px 5px;"><span style=" color:#fff; font-weight:bold; padding:0px 5px 0px 5px;"> Step 2 </span> Do any Household Members (including you) currently participate in one or more of the following assistance programs: SNAP, TANF, or FDPIR? </p>
+        </div>
+    </md-toolbar>
+    <div class="wrap">
+        <form name="Form" ng-submit="checkNextStep(answer.anr,Form.$valid)" novalidate>
+            <md-content layout-padding>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block ">
+                        <md-radio-group name="anr" ng-model="answer.anr" required>
+                            <md-radio-button value="Yes">Yes</md-radio-button>
+                            <md-radio-button value="No"> No </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="Form.anr.$error ">
+                            <div ng-message="required "> required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" ng-hide="checkAnswer(answer.anr)" class="animate-show">
+                    <md-input-container class=" md-block ">
+                        <label>Case Number</label>
+                        <input ng-required="answer.anr === 'Yes'" name="caseNo " ng-model="answer.caseNo ">
+                        <div ng-messages="Form.caseNo.$error ">
+                            <div ng-message="required ">Case Number is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" layout-align="center">
+                    <md-button class="md-raised md-primary" type="submit">Next Step </md-button>
+                </div>
+            </md-content>
+        </form>
+    </div>
+
+    <div class="tips">
+        <span id="usefultip"> useful tips!!  </span>
+
+        <div step2-tips></div>
+    </div>
+</div>

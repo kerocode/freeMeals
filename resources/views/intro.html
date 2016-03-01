@@ -1,0 +1,39 @@
+<div aria-label="intro" ng-controller="IntroCtrl" ng-cloak>
+
+    <md-content class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label=" Step one">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Step One</h1>
+                    <h2>Please follow these instructions in order! </h2>
+                    <h3>LIST ALL HOUSEHOLD MEMBERS WHO ARE INFANTS, CHILDREN, AND STUDENTS UP TO AND INCLUDING GRADE 12</h3>
+                    <div step1-tips>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Step two">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Step Two</h1>
+                    <div step2-tips> </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Step three">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Step Three</h1>
+                    <div step3-tips> </div>
+
+                </md-content>
+            </md-tab>
+            <md-tab label="Step four">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Step Four</h1>
+
+                    <div step4-tips> </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+    <div layout="row" layout-align="center" style="padding-top:20px;">
+        <md-button class=" md-raised md-accent" style="font-size:1.2em;" ng-click="start()">Start Application </md-button>
+    </div>
+</div>

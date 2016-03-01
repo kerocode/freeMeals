@@ -1,0 +1,181 @@
+<div ng-controller="PreviewCtrl" layout="column" style=" width:1000px;" id="popupContainer" class="page" layout-align="center" ng-cloak>
+
+	<md-toolbar class="md-primary">
+		<div layout-gt-sm="row">
+			<p style="padding:0px 5px 0px 5px; font-weight:bold; "> Preview </p>
+		</div>
+	</md-toolbar>
+	<md-content flex layout-padding>
+		<form name="preview">
+			<div class="pad-top">
+				<div md-theme="altTheme">
+					<md-toolbar class="md-accent">
+						<h2 class="md-toolbar-tools">
+      <span flex>Step 1</span>
+      <md-button class="md-fab md-accent" ng-click="goToStep1()" aria-label="edit">
+        <md-tooltip md-direction="left">
+          Edit
+        </md-tooltip>
+        <md-icon md-svg-src="resources/images/ic_mode_edit_white_36px.svg" style="width: 36px; height: 36px;">
+        </md-icon>
+      </md-button>
+               </h2>
+					</md-toolbar>
+				</div>
+				<p> childern's list : </p>
+				<div layout="row" class="underline-reveal" data-ng-repeat="child in childern" layout-fill>
+					<div flex="35"> <b> {{child.firstName | capitalize }} {{child.middleName | capitalize}} {{child.lastName | capitalize}} </b> </div>
+					<div flex="5"></div>
+					<div flex="15">
+						<div ng-if="child.IsStudent === 'Yes'" style="color:red; "> Student</div>
+						<div ng-if="child.IsStudent === 'No'" style="color:blue;"> Not Student </div>
+					</div>
+
+					<div flex="5"></div>
+
+					<div flex="35">
+						<div ng-if="child.IsFoster === true && child.IsHomeless === true "> Foster and Homeless, Migrant, Runaway </div>
+						<div ng-if="child.IsFoster === true && (child.IsHomeless === false || child.IsHomeless === undefined ) "> Foster </div>
+						<div ng-if="child.IsHomeless === true && (child.IsFoster === false || child.IsFoster === undefined)"> Homeless, Migrant, Runaway </div>
+					</div>
+
+				</div>
+			</div>
+			<div class="pad-top" ng-if="answer.anr !== undefined && checkStep2Availability()">
+				<div md-theme="altTheme">
+					<md-toolbar class="md-accent">
+						<h2 class="md-toolbar-tools">
+      <span flex>Step 2</span>
+      <md-button class="md-fab md-accent" ng-click="goToStep2()" aria-label="edit">
+        <md-tooltip md-direction="left">
+          Edit
+        </md-tooltip>
+        <md-icon md-svg-src="resources/images/ic_mode_edit_white_36px.svg" style="width: 36px; height: 36px;">
+        </md-icon>
+      </md-button>
+               </h2>
+					</md-toolbar>
+				</div>
+				<div layout="column">
+					<div> Do any Household Members (including you) currently participate in one or more of the following assistance programs: SNAP, TANF, or FDPIR? </div>
+					<div layout="row" class="underline-reveal" layout-wrap>
+						<div flex="30" hide-sm></div>
+						<div flex="10"><b> {{answer.anr}} </b></div>
+						<div flex="50" ng-if="answer.anr === 'Yes'">
+							<b>Case Number:</b>
+							<b> {{answer.caseNo}}</b>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pad-top" ng-if="(answer.anr === 'No' && checkStep2Availability())">
+				<div md-theme="altTheme">
+					<md-toolbar class="md-accent">
+						<h2 class="md-toolbar-tools">
+      <span flex>Step 3</span>
+      <md-button class="md-fab md-accent" ng-click="goToStep3()" aria-label="edit">
+        <md-tooltip md-direction="left">
+          Edit
+        </md-tooltip>
+        <md-icon md-svg-src="resources/images/ic_mode_edit_white_36px.svg" style="width: 36px; height: 36px;">
+        </md-icon>
+      </md-button>
+               </h2>
+					</md-toolbar>
+				</div>
+				<div layout="column" layout-fill>
+					<div layout="row" class="underline-reveal" layout-fill>
+						<div flex="30">A.Child Income</div>
+						<div flex="20"> {{childIncome.IncomeAmount | currency}}</div>
+						<div flex="20" ng-if="childIncome.IncomeAmount !==0"> {{childIncome.payPeriod}}</div>
+					</div>
+					<md-divider></md-divider>
+					<p>B. All Adult Household Members Income </p>
+					<div layout="column" data-ng-repeat="householder in houseHolders">
+						<div layout="row" style="padding-top:10px;" class="underline-reveal" layout-fill>
+							<div flex="30"> <b>{{$index+1}}- {{householder.lastname | capitalize}}, {{householder.firstname | capitalize}}</b></div>
+							<div flex="20">Earnings from Work</div>
+							<div flex="10">{{householder.incomeAmount | currency}}</div>
+							<div flex="15" ng-if="householder.incomePeroid !==0">{{householder.incomePeroid}}</div>
+						</div>
+						<div layout="row" style="padding-top:5px;" class="underline-reveal" layout-fill>
+							<div flex="30" class="color"><b>Public Assistance/Child Support/Alimony</b></div>
+							<div flex="10">{{householder.childSupport | currency}}</div>
+							<div flex="10" ng-if="householder.childSupportPeroid !==0">{{householder.childSupportPeroid}}</div>
+							<div flex="30" class="color"><b>Pensions/Retirement/All Other Income</b></div>
+							<div flex="10">{{householder.retirement | currency}}</div>
+							<div flex="10" ng-if="householder.retirementPeroid !==0">{{householder.retirementPeroid}}</div>
+						</div>
+						<md-divider></md-divider>
+					</div>
+					<div layout="row" style="padding-top:10px;" class="underline-reveal" layout-fill>
+						<div flex="60" class="color"><b>Total Household Members(Children and Adults)</b></div>
+						<div flex="10">{{house.No}}</div>
+
+					</div>
+					<md-divider></md-divider>
+					<div ng-if="house.IsChecked ==false" class="underline-reveal" style="padding-top:10px;" layout="row" layout-fill>
+						<div flex="80">Last Four Digits of Social Security Number (SSN) of Primary Wage Earner or Other Adult Household Member</div>
+						<div flex="10"> <b>{{house.SNN}}</b></div>
+					</div>
+					<div ng-if="house.IsChecked ==true " class="underline-reveal" style="padding-top:10px;" layout="row" layout-fill>
+						<div flex>Primary Wage Earner or any Other Adult Household Member has no Social Security Number</div>
+					</div>
+				</div>
+			</div>
+			<div class="pad-top">
+				<div md-theme="altTheme">
+					<md-toolbar class="md-accent">
+						<h2 class="md-toolbar-tools">
+      <span flex>Step 4</span>
+      <md-button class="md-fab md-accent" ng-click="goToStep4()" aria-label="edit">
+        <md-tooltip md-direction="left">
+          Edit
+        </md-tooltip>
+        <md-icon md-svg-src="resources/images/ic_mode_edit_white_36px.svg" style="width: 36px; height: 36px;">
+        </md-icon>
+      </md-button>
+               </h2>
+					</md-toolbar>
+				</div>
+				<div layout="column" layout-fill>
+					<div layout="row" class="underline-reveal pad-top" ng-if="optional.IsHispanic !== undefined" layout-fill>
+						<div flex="15"><b>Ethnicity:</b></div>
+						<div flex="20">
+							<div ng-if="optional.IsHispanic === 'Yes'"> Hispanic or Latino</div>
+							<div ng-if="optional.IsHispanic === 'No'"> Not Hispanic or Latino</div>
+						</div>
+					</div>
+					<div layout="row" class="underline-reveal pad-top" ng-if="races.length >0 " layout-fill>
+						<div flex="15"><b>Race:</b></div>
+						<div data-ng-repeat=" race in races">
+							{{race}}
+							<span ng-if="!$last"> / </span>
+						</div>
+					</div>
+					<div layout="row" class="underline-reveal pad-top" layout-fill>
+						<div flex="50"> <span> <b>Address:</b> </span>{{user.address}}</div>
+						<div flex="20"><span> <b>City:</b> </span> {{user.city}}</div>
+						<div flex="15"><span> <b>State:</b> </span>{{user.state}}</div>
+						<div flex="15"> <span> <b>Zip Code:</b> </span>{{user.postalCode}}</div>
+					</div>
+					<div layout="row" class="underline-reveal pad-top" ng-if="user.phone || user.email " layout-fill>
+						<div flex ng-if="user.phone">
+							<md-icon md-svg-src="resources/images/ic_phone_black_36px.svg"></md-icon>
+							{{user.phone | tel }}
+						</div>
+						<div flex ng-if="user.email">
+							<md-icon md-svg-src="resources/images/ic_email_black_36px.svg"></md-icon>
+							{{user.email}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div layout="row" layout-align="center" style="padding-top:20px;">
+				<md-button class=" md-raised md-accent" style="font-size:1.2em;" ng-click="confirm($event)">Submit </md-button>
+			</div>
+		</form>
+
+	</md-content>
+</div>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<base href="/">
+	<meta name="fragment" content="!" />
+	<title> free_meals</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="resources/scripts/libs/angular-material.min.css" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="resources/styles/styles.css">
+	<!-- endbuild -->
+</head>
+
+<body style="
+    background: url(resources/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:auto;         
+    font-family: 'Open Sans', sans-serif;" ng-app="MyApp">
+	<div layout="row" flex layout-align="center center">
+		<div class="page" ng-view></div>
+	</div>
+
+
+	<script src="resources/scripts/libs/angular.min.js"></script>
+	<script src="resources/scripts/libs/angular-route.min.js"></script>
+	<script src="resources/scripts/libs/angular-aria.min.js"></script>
+	<script src="resources/scripts/libs/angular-animate.min.js"></script>
+	<script src="resources/scripts/libs/angular-messages.min.js"></script>
+	<script src="resources/scripts/libs/angular-material.min.js"></script>
+
+
+	<script src="resources/scripts/app.js"></script>
+	<script src="resources/scripts/factory/data-collector.js"></script>
+	<script src="resources/scripts/directives/directives.js"></script>
+	<script src="resources/scripts/controllers/step1-ctrl.js"></script>
+	<script src="resources/scripts/controllers/step2-ctrl.js"></script>
+	<script src="resources/scripts/controllers/step3-ctrl.js"></script>
+	<script src="resources/scripts/controllers/step4-ctrl.js"></script>
+	<script src="resources/scripts/controllers/preview-ctrl.js"></script>
+	<script src="resources/scripts/libs/xlsx.core.min.js"></script>
+	<script src="resources/scripts/libs/alasql.min.js"></script>
+	<script type="text/javascript">
+		angular.module("MyApp", ['ngRoute', 'ngMaterial', 'ngAnimate', 'myform'])
+			.config(function ($routeProvider, $locationProvider) {
+				$routeProvider
+					.when('/intro', {
+						controller: 'IntroCtrl',
+						templateUrl: 'resources/views/intro.html'
+					});
+				$routeProvider
+					.when('/step1', {
+						controller: 'Step1Ctrl',
+						templateUrl: 'resources/views/step1/my-step1.html'
+					});
+				$routeProvider
+					.when('/step2', {
+						controller: 'Step2Ctrl',
+						templateUrl: 'resources/views/step2/my-step2.html'
+					});
+				$routeProvider
+					.when('/step3', {
+						controller: 'Step3Ctrl',
+						templateUrl: 'resources/views/step3/my-step3.html'
+					});
+				$routeProvider
+					.when('/step4', {
+						controller: 'Step4Ctrl',
+						templateUrl: 'resources/views/step4/my-step4.html'
+					});
+				$routeProvider
+					.when('/preview', {
+						controller: 'PreviewCtrl',
+						templateUrl: 'resources/views/preview/preview.html'
+					});
+				$routeProvider
+					.otherwise({
+						redirectTo: '/intro'
+					});
+
+				$locationProvider.html5Mode(true);
+
+			});
+	</script>
+	<!-- endbuild -->
+</body>
+
+</html>
